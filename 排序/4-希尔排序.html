@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function shellsort(s) {
+            var gap = 1,
+                pre_index,
+                current;
+            while (gap<s.length/3) {
+                gap = gap*3+1;
+            }
+            for(gap; gap>0; gap = Math.floor(gap/3)){   //gap根据划分长度不断调整，直到为1
+                for(var i=gap;i<=s.length-1;i++) {
+                    current = s[i];
+                    pre_index = i-gap;
+                    while(pre_index>=0 && s[pre_index]>current) {
+                        s[pre_index+gap] = s[pre_index]; //把大于current的元素都往后移
+                        pre_index-=gap;
+                    }
+                s[pre_index+gap] = current; //把current的值抽出来放到前面使其有序
+                }
+            }           
+        return s;
+        }
+        var s=[1,5,6,2,3,8,8,8,88,8,9];
+        var sort_s = shellsort(s);
+        console.log(sort_s);
+        
+    </script>
+</body>
+</html>

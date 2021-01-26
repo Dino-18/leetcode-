@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function mergeSort(s) {
+            var len = s.length;
+            if(len <= 1) {
+                return s;
+            }
+            var m = Math.floor(len/2),
+            left = s.slice(0,m),
+            right = s.slice(m);
+            return merge(mergeSort(left), mergeSort(right));
+        }
+        function merge(l, r) {
+            var result = []; //首先创建一个空数组，大小为M+N
+            while(l.length && r.length) {
+                if(l[0]<=r[0]) {
+                    result.push(l.shift());
+                } else{
+                    result.push(r.shift());
+                }     //比较l和r中第一个值，将较小的值存入到result中
+            }
+            while(l.length) {
+                result.push(l.shift());
+            }
+            while(r.length) {
+                result.push(r.shift());
+            }
+            return result;
+        }
+        var s=[1,5,6,2,3,8,8,8,88,8,9];
+        var sort_s = mergeSort(s);
+        console.log(sort_s);
+        
+    </script>
+</body>
+</html>

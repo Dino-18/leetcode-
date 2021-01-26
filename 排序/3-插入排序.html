@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function insertionsort(s) {
+            for(var i=1;i<=s.length-1;i++) {
+                current = s[i];
+                pre_index = i-1;
+                while(pre_index>=0 && s[pre_index]>current) {
+                    s[pre_index+1] = s[pre_index]; //把大于current的元素都往后移
+                    pre_index--;
+                }
+                s[pre_index+1] = current; //把current的值抽出来放到前面使其有序
+            }
+        return s;
+        }
+        var s=[1,5,6,2,3];
+        var sort_s = insertionsort(s);
+        console.log(sort_s);
+        
+    </script>
+</body>
+</html>

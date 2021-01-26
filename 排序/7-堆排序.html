@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //定义一个交换函数，用于后面的两次交换
+        function swap(A, i, j) {
+            let temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
+        //堆的建立过程：传入参数为A，当前根节点序号i，长度
+        function shiftDown(A, i, len) {
+            let temp = A[i]; //将根节点暂存
+            for( let j =2*i+1; j< len; j = j*2+1 ) { //j是i的子节点，比较大小
+                if (j+1<len && A[j]<A[j+1]) {   //先找到i的子节点中的较大值和i比较
+                    j++;
+                }
+                if (A[j]>temp) { //如果根节点的值小于子节点，就交换，并且将子节点的序号交给根节点
+                    swap(A, i, j);
+                    i = j;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        //堆排序过程，将最大的根节点依次移到末尾
+        function heapSort(A) {
+            //初始化一个非叶子节点
+            for(let i = Math.floor(A.length/2)-1; i>=0; i--) {
+                shiftDown(A, i, A.length); //将所有节点调整，使其变为大根堆
+            }
+            //交换过程：将最大的根节点移到末尾，注意当前移动后要重新调整剩余元素使其变为大根堆
+            for(let i = Math.floor(A.length)-1; i>0; i--) {
+                swap(A, 0, i); //i是最后一个元素，i和0交换
+                shiftDown(A, 0, i); // 从根节点开始调整，并且最后一个结点已经为当
+                         // 前最大值，不需要再参与比较，所以第三个参数
+                         // 为 i，即比较到最后一个结点前一个即可
+            }
+            return A;
+        }
+        let Arr = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
+        new_a = heapSort(Arr);
+        console.log(new_a);
+
+    </script>
+</body>
+</html>

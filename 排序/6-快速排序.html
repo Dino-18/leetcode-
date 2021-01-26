@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      
+function quickSort(nums, left, right) {
+    if (left >= right) return;
+    let pivotIndex = partition(nums, left, right)
+    quickSort(nums, left, pivotIndex - 1)
+    quickSort(nums, pivotIndex + 1, right)
+    return nums;
+}
+
+function partition(nums, left, right) {
+    let pivot = right;
+    let leftIndex = left;
+    for (let i = left; i < right; i++) {
+        if (nums[i] < nums[pivot]) {
+            [nums[leftIndex], nums[i]] = [nums[i], nums[leftIndex]];
+            bleftIndex++;
+        }
+    }
+    [nums[leftIndex], nums[pivot]] = [nums[pivot], nums[leftIndex]];
+    return leftIndex;
+}
+
+        var s=[1,5,6,2,3,8,8,8,88,8,9];
+        var sort_s = quickSort(s, 0, s.length-1);
+        console.log(sort_s);
+        
+    </script>
+</body>
+</html>
